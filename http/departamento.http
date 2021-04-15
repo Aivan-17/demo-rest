@@ -1,0 +1,21 @@
+###
+
+GET http://localhost:8080/departamento/1
+
+
+###
+
+GET http://localhost:8080/departamento
+
+
+###
+
+
+POST http://localhost:8080/departamento
+Content-Type: application/json
+Accept: application/json
+
+{
+     "IdDepartamento": 6,
+     "Departamento": "Sucre"
+}
