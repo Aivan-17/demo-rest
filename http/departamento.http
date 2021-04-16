@@ -1,6 +1,6 @@
 ###
 
-GET http://localhost:8080/departamento/1
+GET http://localhost:8080/departamento/3
 
 
 ###
@@ -16,6 +16,13 @@ Content-Type: application/json
 Accept: application/json
 
 {
-     "IdDepartamento": 6,
-     "Departamento": "Sucre"
+     "IdDepartamento": 13,
+     "Departamento": "Litoral"
 }
+
+
+###
+
+
+
+DELETE http://localhost:8080/departamento/1

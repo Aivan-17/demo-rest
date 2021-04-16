@@ -64,4 +64,22 @@ public class DepartamentoController {
         }
         return departamento;
     }
+    /*@PutMapping(path = "/departamento/{IdDepartamento}")
+    public Departamento updateDepartamento(@PathVariable Integer IdDepartamento, @RequestBody Departamento departamento)
+    {
+        Departamento DepartamentoActual = new Departamento();
+        ///Asingnando SET, Mostrando GET
+        try {
+            Connection conn = dataSource.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("UPDATE departamento" +
+                    " set  departamento=?");
+            if (rs.next()) {
+                DepartamentoActual.setDepartamento(departamento.getdepartamento());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return DepartamentoActual;
+    }*/
 }
