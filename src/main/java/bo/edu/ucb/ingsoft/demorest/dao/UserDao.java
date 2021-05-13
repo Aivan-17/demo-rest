@@ -19,7 +19,7 @@ public class UserDao {
             Connection conn=dataSource.getConnection();
             Statement stmt=conn.createStatement();
             stmt.execute("INSERT INTO usuario VALUES ("
-                    +user.id_usuario+", '"
+                    +user.idUsuario+", '"
                     +user.username+", '"
                     +user.contrasenia+", '"
                     +user.correoElectronico+", '"

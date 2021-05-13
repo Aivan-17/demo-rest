@@ -1,8 +1,11 @@
 package bo.edu.ucb.ingsoft.demorest.api;
 
+import bo.edu.ucb.ingsoft.demorest.bl.GestionDireccionBl;
 import bo.edu.ucb.ingsoft.demorest.dto.Direccion;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -15,58 +18,27 @@ import java.util.List;
 public class DireccionController {
     @Autowired
     public DataSource dataSource;
-
-    @GetMapping(path = "/direccion/{id_direccion}")
-    public Direccion findDireccionById(@PathVariable Integer id_direccion) {
-        Direccion result = new Direccion();
-        try {
-            Connection conn = dataSource.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select id_direccion,zona,calle,ciudad,departamento from direccion WHERE id_departamento =" + id_direccion);
-            if (rs.next()) {
-                result.id_direccion = rs.getInt("id_direccion");
-                result.zona = rs.getString("zona");
-                result.calle = rs.getString("calle");
-                result.ciudad = rs.getString("ciudad");
-                result.departamento = rs.getString("departamento");
-
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return result;
-    }
-
-    @GetMapping(path = "/direccion")
-    public List<Direccion> findAllDireccion() {
-        List<Direccion> result = new ArrayList<>();
-
-        try {
-            Connection conn = dataSource.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select id_direccion,zona,calle,ciudad,departamento from direccion WHERE id_departamento ");
-            while (rs.next()) {
-                Direccion recom = new Direccion();
-                recom.id_direccion = rs.getInt("id_direccion");
-                recom.zona = rs.getString("zona");
-                recom.calle = rs.getString("calle");
-                recom.ciudad = rs.getString("ciudad");
-                recom.departamento = rs.getString("departamento");
-                result.add(recom);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return result;
-    }
+    @Autowired
+    private GestionDireccionBl gestionDireccionBl;
 
     @PostMapping(path = "/direccion")
     public Direccion createDireccion(@RequestBody Direccion direccion) {
         //validar que los datos enviados son correctos
-        if (direccion.zona == null || direccion.zona.equals("")) {
 
+        return gestionDireccionBl.crearDireccion(direccion);
+    }
+
+    @GetMapping(path = "/direccion/{idDireccion}")
+    public Direccion findDireccionById(@PathVariable Integer idDireccion) {
+        Direccion direccion = gestionDireccionBl.findDireccionById(idDireccion);
+        if (direccion != null) {
+            return gestionDireccionBl.findDireccionById(idDireccion);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe la persona con codigo:" + idDireccion );
         }
-
-        return direccion;
+    }
+    @GetMapping(path = "/direccion")
+    public List<Direccion> findAllDireccions() {
+        return gestionDireccionBl.findAllDireccions();
     }
 }

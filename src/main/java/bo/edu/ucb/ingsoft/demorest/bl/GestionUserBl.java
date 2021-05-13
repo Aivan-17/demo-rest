@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GestionUserBl {
+
     @Autowired
     UserDao userDao;
-    public User crearUser(User user){
 
+    public User createUser(User user) {
+
+        return userDao.createUser(user);
     }
 }
