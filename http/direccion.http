@@ -1,6 +1,6 @@
 ###
 
-GET http://localhost:8080/direccion/200
+GET http://localhost:8080/direccion/50
 
 
 ###
@@ -14,9 +14,8 @@ GET http://localhost:8080/direccion
 POST http://localhost:8080/direccion
 Content-Type: application/json
 Accept: application/json
-
 {
-     "idDireccion": 200,
+     "direccion_id": 101,
      "zona": "Litoral",
      "calle": "el olvido",
      "ciudad": "Oruro",

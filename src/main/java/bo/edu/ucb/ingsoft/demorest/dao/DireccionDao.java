@@ -13,23 +13,25 @@ import java.util.List;
 
 @Service
 public class DireccionDao {
-
+    @Autowired
+    private SequenceDao sequenceDao;
     @Autowired
     public DataSource dataSource;
 
     public Direccion crearDireccion(Direccion direccion){
 
         // Si todo esta bien procedemos a insertar en BBDD
+        direccion.direccion_id= sequenceDao.getPrimaryKeyForTable("direccion");
         try {
             Connection conn = dataSource.getConnection();
             Statement stmt = conn.createStatement();
             stmt.execute("INSERT INTO direccion VALUES ("
-                    + direccion.idDireccion + ",'"
-                    + direccion.zona + ", '"
-                    + direccion.calle + ", '"
-                    + direccion.ciudad + ", '"
-                    + direccion.departamento + ")");
-
+                    + direccion.direccion_id +",'"
+                    + direccion.zona+ "','"
+                    + direccion.calle+ ",'"
+                    + direccion.ciudad+ "','"
+                    + direccion.departamento + "')'");
+            conn.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -41,10 +43,10 @@ public class DireccionDao {
         try {
             Connection conn = dataSource.getConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select id_direccion, zona, calle,ciudad,departamento from direccion" +
-                    "  WHERE id_direccion = " + idDireccion);  //FIXME SQL INJECTION !!!!!
+            ResultSet rs = stmt.executeQuery("select direccion_id zona, calle,ciudad,departamento from direccion" +
+                    "  WHERE direccion_id = " + idDireccion);  //FIXME SQL INJECTION !!!!!
             if (rs.next()) {
-                result.idDireccion = rs.getInt("id_direccion");
+                result.direccion_id= rs.getInt("direccion_id");
                 result.zona = rs.getString("zona");
                 result.calle = rs.getString("calle");
                 result.ciudad=rs.getString("ciudad");
@@ -63,10 +65,10 @@ public class DireccionDao {
         try {
             Connection conn = dataSource.getConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select id_direccion, zona, calle,ciudad,departamento from direccion");
+            ResultSet rs = stmt.executeQuery("select direccion_id, zona, calle,ciudad,departamento from direccion");
             while (rs.next()) {
                 Direccion direccion = new Direccion();
-                direccion.idDireccion = rs.getInt("id_direccion");
+                direccion.direccion_id = rs.getInt("direccion_id");
                 direccion.zona = rs.getString("zona");
                 direccion.calle = rs.getString("calle");
                 direccion.ciudad=rs.getString("ciudad");
