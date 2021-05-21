@@ -1,18 +1,12 @@
 package bo.edu.ucb.ingsoft.demorest.api;
 
 import bo.edu.ucb.ingsoft.demorest.bl.GestionDireccionBl;
-import bo.edu.ucb.ingsoft.demorest.dto.Direccion;
+import bo.edu.ucb.ingsoft.demorest.dto.DireccionDTO;
+import bo.edu.ucb.ingsoft.demorest.dto.ResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class DireccionController {
@@ -22,23 +16,39 @@ public class DireccionController {
     private GestionDireccionBl gestionDireccionBl;
 
     @PostMapping(path = "/direccion")
-    public Direccion createDireccion(@RequestBody Direccion direccion) {
+    public ResponseDto createDireccion(@RequestBody DireccionDTO direccionDTO) {
         //validar que los datos enviados son correctos
+        if(direccionDTO.getZona() == null || direccionDTO.getZona().trim().equals("")){
+        //    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"La zona debe ser Obligatoria");
+            return new ResponseDto( false , null,"La zona debe ser Obligatoria");
+        }
+        if(direccionDTO.getCalle() == null || direccionDTO.getCalle().trim().equals("")) {
+        //    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La calledebe ser Obligatoria");
+            return new ResponseDto( false , null,"La calle debe ser Obligatoria");
+        }
+        if(direccionDTO.getCiudad() == null || direccionDTO.getCiudad().trim().equals("")) {
+        //    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La ciudad debe ser Obligatoria");
+            return new ResponseDto( false , null,"La ciudad debe ser Obligatoria");
+        }
+        if(direccionDTO.getDepartamento() == null || direccionDTO.getDepartamento().trim().equals("")) {
+          //  throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La depa debe ser Obligatoria");
+            return new ResponseDto( false , null,"el departamento debe ser Obligatoria");
+        }
+            return new ResponseDto(true, gestionDireccionBl.crearDireccion(direccionDTO), null);
 
-        return gestionDireccionBl.crearDireccion(direccion);
     }
 
     @GetMapping(path = "/direccion/{idDireccion}")
-    public Direccion findDireccionById(@PathVariable Integer idDireccion) {
-        Direccion direccion = gestionDireccionBl.findDireccionById(idDireccion);
-        if (direccion != null) {
-            return gestionDireccionBl.findDireccionById(idDireccion);
+    public ResponseDto findDireccionById(@PathVariable Integer idDireccion) {
+        DireccionDTO direccionDTO = gestionDireccionBl.findDireccionById(idDireccion);
+        if (direccionDTO != null) {
+            return new ResponseDto( true, direccionDTO,null);
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe la persona con codigo:" + idDireccion );
+            return new ResponseDto( true, direccionDTO,"No existe la persona con codigo:");
         }
     }
     @GetMapping(path = "/direccion")
-    public List<Direccion> findAllDireccions() {
-        return gestionDireccionBl.findAllDireccions();
+    public ResponseDto findAllDireccions() {
+       return new ResponseDto( true, gestionDireccionBl.findAllDireccions(),null);
     }
 }

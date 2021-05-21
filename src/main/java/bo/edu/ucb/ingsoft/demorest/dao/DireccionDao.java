@@ -1,13 +1,11 @@
 package bo.edu.ucb.ingsoft.demorest.dao;
 
-import bo.edu.ucb.ingsoft.demorest.dto.Direccion;
+import bo.edu.ucb.ingsoft.demorest.dto.DireccionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,41 +14,49 @@ public class DireccionDao {
     @Autowired
     private SequenceDao sequenceDao;
     @Autowired
-    public DataSource dataSource;
+    private DataSource dataSource;
 
-    public Direccion crearDireccion(Direccion direccion){
-
+    public DireccionDTO crearDireccion(DireccionDTO direccionDTO){
         // Si todo esta bien procedemos a insertar en BBDD
-        direccion.direccion_id= sequenceDao.getPrimaryKeyForTable("direccion");
+        direccionDTO.setIdDireccion(sequenceDao.getPrimaryKeyForTable("direccion"));
+        Connection conn=null;
         try {
-            Connection conn = dataSource.getConnection();
-            Statement stmt = conn.createStatement();
-            stmt.execute("INSERT INTO direccion VALUES ("
-                    + direccion.direccion_id +",'"
-                    + direccion.zona+ "','"
-                    + direccion.calle+ ",'"
-                    + direccion.ciudad+ "','"
-                    + direccion.departamento + "')'");
-            conn.close();
+            conn = dataSource.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO direccion VALUES (?,?,?,?,?) ");
+            pstmt.setInt(1, direccionDTO.getIdDireccion());
+            pstmt.setString(2, direccionDTO.getZona());
+            pstmt.setString(3, direccionDTO.getCalle());
+            pstmt.setString(4, direccionDTO.getCiudad());
+            pstmt.setString(5, direccionDTO.getDepartamento());
+            pstmt.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        return direccion;
-    }
-    public Direccion findDireccionById(Integer idDireccion) {
-        Direccion result = new Direccion();
+        }finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                }catch (SQLException sqex){
 
-        try {
-            Connection conn = dataSource.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select direccion_id zona, calle,ciudad,departamento from direccion" +
-                    "  WHERE direccion_id = " + idDireccion);  //FIXME SQL INJECTION !!!!!
+                  return null;
+                }
+            }
+        }
+        return direccionDTO;
+    }
+    public DireccionDTO findDireccionById(Integer direccionid) {
+        DireccionDTO result = new DireccionDTO();
+
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT direccion_id,zona, calle, ciudad, departamento FROM direccion WHERE direccion_id = ? ")
+        ){ //TRY WITH RESOURCES
+            pstmt.setInt(1, direccionid);
+            ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                result.direccion_id= rs.getInt("direccion_id");
-                result.zona = rs.getString("zona");
-                result.calle = rs.getString("calle");
-                result.ciudad=rs.getString("ciudad");
-                result.departamento=rs.getString("departamento");
+                result.setIdDireccion(rs.getInt("direccion_id"));
+                result.setZona(rs.getString("zona"));
+                result.setCalle(rs.getString("calle"));
+                result.setCiudad(rs.getString("ciudad"));
+                result.setDepartamento(rs.getString("departamento"));
             } else { // si no hay valores de BBDD
                 result = null;
             }
@@ -59,21 +65,21 @@ public class DireccionDao {
         }
         return result;
     }
-    public List<Direccion> findAllDireccion() {
-        List<Direccion> result = new ArrayList<>();
+    public List<DireccionDTO> findAllDireccion() {
+        List<DireccionDTO> result = new ArrayList<>();
 
         try {
             Connection conn = dataSource.getConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select direccion_id, zona, calle,ciudad,departamento from direccion");
+            ResultSet rs = stmt.executeQuery("SELECT direccion_id,zona,calle,ciudad,departamento FROM direccion");
             while (rs.next()) {
-                Direccion direccion = new Direccion();
-                direccion.direccion_id = rs.getInt("direccion_id");
-                direccion.zona = rs.getString("zona");
-                direccion.calle = rs.getString("calle");
-                direccion.ciudad=rs.getString("ciudad");
-                direccion.departamento=rs.getString("departamento");
-                result.add(direccion);
+                DireccionDTO direccionDTO = new DireccionDTO();
+                direccionDTO.setIdDireccion(rs.getInt("direccion_id"));
+                direccionDTO.setZona(rs.getString("zona"));
+                direccionDTO.setCalle(rs.getString("calle"));
+                direccionDTO.setCiudad(rs.getString("ciudad"));
+                direccionDTO.setDepartamento(rs.getString("departamento"));
+                result.add(direccionDTO);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -1,6 +1,6 @@
 ###
 
-GET http://localhost:8080/direccion/2
+GET http://localhost:8080/direccionDTO/2
 
 
 

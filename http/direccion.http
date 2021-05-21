@@ -1,6 +1,6 @@
 ###
 
-GET http://localhost:8080/direccion/50
+GET http://localhost:8080/direccion/89
 
 
 ###
@@ -14,9 +14,9 @@ GET http://localhost:8080/direccion
 POST http://localhost:8080/direccion
 Content-Type: application/json
 Accept: application/json
+
 {
-     "direccion_id": 101,
-     "zona": "Litoral",
+     "zona": "olvidos",
      "calle": "el olvido",
      "ciudad": "Oruro",
      "departamento": "Oruro"
@@ -24,7 +24,16 @@ Accept: application/json
 
 
 ###
+POST http://localhost:8008/direccionDTO
+Content-Type: application/json
+Accept: application/json
 
-
+{
+  "firstName": "Maria",
+  "lastName": "Iribarne",
+  "birthDate": "1991-04-30T00:00:00.000-0000",
+  "status": true
+}
+###
 
 DELETE http://localhost:8080/departamento/1
