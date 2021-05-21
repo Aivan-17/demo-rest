@@ -2,8 +2,8 @@ package bo.edu.ucb.ingsoft.demorest.dto;
 
 public class RecompensaDTO {
     private Integer recompensaId;
-    private Double rangoInicial;
-    private Double rangoFinal;
+    private Integer rangoInicial;
+    private Integer rangoFinal;
     private String recompensa;
     private Integer proyectoId;
 
@@ -19,19 +19,19 @@ public class RecompensaDTO {
         this.recompensaId = recompensaId;
     }
 
-    public Double getRangoInicial() {
+    public Integer getRangoInicial() {
         return rangoInicial;
     }
 
-    public void setRangoInicial(Double rangoInicial) {
+    public void setRangoInicial(Integer rangoInicial) {
         this.rangoInicial = rangoInicial;
     }
 
-    public Double getRangoFinal() {
+    public Integer getRangoFinal() {
         return rangoFinal;
     }
 
-    public void setRangoFinal(Double rangoFinal) {
+    public void setRangoFinal(Integer rangoFinal) {
         this.rangoFinal = rangoFinal;
     }
 

@@ -1,0 +1,21 @@
+####
+
+GET http://localhost:8080/recompensa
+
+
+###
+
+GET http://localhost:8080/recompensa/8
+
+###
+
+POST http://localhost:8080/recompensa
+Content-Type: application/json
+Accept: application/json
+
+{
+  "rangoInicial": "100",
+  "rangoFinal": 200,
+  "recompensa": "Oruroasdasdasd",
+  "proyectoId": 3
+}

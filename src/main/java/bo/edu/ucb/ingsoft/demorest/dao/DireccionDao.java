@@ -47,12 +47,12 @@ public class DireccionDao {
         DireccionDTO result = new DireccionDTO();
 
         try (Connection conn = dataSource.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT direccion_id,zona, calle, ciudad, departamento FROM direccion WHERE direccion_id = ? ")
+            PreparedStatement pstmt = conn.prepareStatement("SELECT id_direccion,zona, calle, ciudad, departamento FROM direccion WHERE id_direccion = ? ")
         ){ //TRY WITH RESOURCES
             pstmt.setInt(1, direccionid);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                result.setIdDireccion(rs.getInt("direccion_id"));
+                result.setIdDireccion(rs.getInt("id_direccion"));
                 result.setZona(rs.getString("zona"));
                 result.setCalle(rs.getString("calle"));
                 result.setCiudad(rs.getString("ciudad"));
@@ -71,10 +71,10 @@ public class DireccionDao {
         try {
             Connection conn = dataSource.getConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT direccion_id,zona,calle,ciudad,departamento FROM direccion");
+            ResultSet rs = stmt.executeQuery("SELECT id_direccion,zona,calle,ciudad,departamento FROM direccion");
             while (rs.next()) {
                 DireccionDTO direccionDTO = new DireccionDTO();
-                direccionDTO.setIdDireccion(rs.getInt("direccion_id"));
+                direccionDTO.setIdDireccion(rs.getInt("id_direccion"));
                 direccionDTO.setZona(rs.getString("zona"));
                 direccionDTO.setCalle(rs.getString("calle"));
                 direccionDTO.setCiudad(rs.getString("ciudad"));

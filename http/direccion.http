@@ -24,16 +24,5 @@ Accept: application/json
 
 
 ###
-POST http://localhost:8008/direccionDTO
-Content-Type: application/json
-Accept: application/json
-
-{
-  "firstName": "Maria",
-  "lastName": "Iribarne",
-  "birthDate": "1991-04-30T00:00:00.000-0000",
-  "status": true
-}
-###
 
 DELETE http://localhost:8080/departamento/1
