@@ -1,0 +1,25 @@
+####
+
+GET http://localhost:8080/proyecto/11
+
+###
+
+GET http://localhost:8080/proyecto
+
+###
+
+POST http://localhost:8080/proyecto
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "olvido",
+  "descripcion": "la calle el olvida la mas bonita de la ciudad",
+  "montoRecaudar": "12000",
+  "idEmprendedor": "3",
+  "horaInicio": "21:00",
+  "horaFin": "21:00",
+  "idEstado": 2,
+  "fechaInicio": "17/02/2020",
+  "fechaFin":"17/02/2021"
+}

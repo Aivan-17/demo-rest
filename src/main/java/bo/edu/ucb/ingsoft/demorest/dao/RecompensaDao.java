@@ -66,11 +66,11 @@ public class RecompensaDao {
             ResultSet rs = stmt.executeQuery("SELECT id_recompensa, valor_min,valor_max,recompensa,id_proyecto FROM recompensa ");
             while(rs.next()){
                 RecompensaDTO recompensaDTO=new RecompensaDTO();
-                recompensaDTO.setRecompensaId(rs.getInt("id_recompensa"));
-                recompensaDTO.setRangoInicial(rs.getInt("valor_min"));
-                recompensaDTO.setRangoFinal(rs.getInt("valor_max"));
-                recompensaDTO.setRecompensa(rs.getString("recompensa"));
-                recompensaDTO.setProyectoId(rs.getInt("id_proyecto"));
+                recompensaDTO.setRecompensaId(rs.getInt(1));
+                recompensaDTO.setRangoInicial(rs.getInt(2));
+                recompensaDTO.setRangoFinal(rs.getInt(3));
+                recompensaDTO.setRecompensa(rs.getString(4));
+                recompensaDTO.setProyectoId(rs.getInt(5));
                 result.add(recompensaDTO);
             }
         }catch (Exception ex){
@@ -79,4 +79,5 @@ public class RecompensaDao {
         return result;
     }
 }
+
 
