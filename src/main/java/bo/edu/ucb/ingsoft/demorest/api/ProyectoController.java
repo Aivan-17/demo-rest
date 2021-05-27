@@ -17,6 +17,33 @@ public class ProyectoController {
 
     @PostMapping(path = "/proyecto")
     public ResponseDto crearProyecto(@RequestBody ProyectoDTO proyectoDTO){
+        if (proyectoDTO.getNombre()==null||proyectoDTO.getNombre().trim().equals("")){
+            return new ResponseDto(false,null,"El nombre es Obligatorio");
+        }
+        if (proyectoDTO.getDescripcion()==null||proyectoDTO.getDescripcion().trim().equals("")){
+            return new ResponseDto(false,null,"La Descripcion es Obligatorio");
+        }
+        if (proyectoDTO.getMontoRecaudar()==null||proyectoDTO.getMontoRecaudar().equals("")){
+            return new ResponseDto(false,null,"El Monto a recaudar es Obligatorio");
+        }
+        if (proyectoDTO.getIdEmprendedor()==null||proyectoDTO.getIdEmprendedor().equals("")){
+            return new ResponseDto(false,null,"El ID del emprendedor es Obligatorio");
+        }
+        if (proyectoDTO.getHoraInicio()==null||proyectoDTO.getHoraInicio().trim().equals("")){
+            return new ResponseDto(false,null,"La hora de Inicio es Obligatorio");
+        }
+        if (proyectoDTO.getHoraFin()==null||proyectoDTO.getHoraFin().trim().equals("")){
+            return new ResponseDto(false,null,"El hora de Fin es Obligatorio");
+        }
+        if (proyectoDTO.getIdEstado()==null||proyectoDTO.getIdEstado().equals("")){
+            return new ResponseDto(false,null,"El ID de Estado es Obligatorio");
+        }
+        if (proyectoDTO.getFechaInicio()==null||proyectoDTO.getFechaInicio().trim().equals("")){
+            return new ResponseDto(false,null,"La Fecha de Inicio es Obligatorio");
+        }
+        if (proyectoDTO.getFechaFin()==null||proyectoDTO.getFechaFin().trim().equals("")){
+            return new ResponseDto(false,null,"La Fecha de Finalizacion es Obligatorio");
+        }
         return new ResponseDto(true,gestionProyectoBl.crearProyecto(proyectoDTO), null);
     }
     @GetMapping(path = "/proyecto/{idProyecto}")
