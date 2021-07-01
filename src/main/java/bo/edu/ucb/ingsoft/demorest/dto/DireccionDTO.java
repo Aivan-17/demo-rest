@@ -1,6 +1,10 @@
 package bo.edu.ucb.ingsoft.demorest.dto;
 
+import java.lang.annotation.Repeatable;
+
+
 public class DireccionDTO {
+
     private Integer idDireccion;
     private String zona;
     private String calle;

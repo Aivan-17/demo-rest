@@ -1,15 +1,15 @@
 ####
 
-GET http://localhost:8080/recompensa
+GET http://localhost:8888/recompensa
 
 
 ###
 
-GET http://localhost:8080/recompensa/8
+GET http://localhost:8888/recompensa/57
 
 ###
 
-POST http://localhost:8080/recompensa
+POST http://localhost:8888/recompensa
 Content-Type: application/json
 Accept: application/json
 

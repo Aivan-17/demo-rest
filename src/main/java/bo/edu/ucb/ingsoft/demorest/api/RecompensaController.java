@@ -26,7 +26,7 @@ public class RecompensaController {
         if (recompensaDTO.getRecompensa() == null || recompensaDTO.getRecompensa().trim().equals("")) {
             return new ResponseDto(false, null, "la descripcion es obligatorio");
         }
-        if (recompensaDTO.getProyectoId() == null || recompensaDTO.getProyectoId().equals("")) {
+        if (recompensaDTO.getIdProyecto() == null || recompensaDTO.getIdProyecto().equals("")) {
             return new ResponseDto(false, null, "El id del proyecto es obligatorio");
         }
         return new ResponseDto(true, gestionRecompensaBl.crearRecompensa(recompensaDTO), null);

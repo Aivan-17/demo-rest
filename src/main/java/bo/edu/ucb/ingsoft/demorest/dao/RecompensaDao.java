@@ -17,16 +17,16 @@ public class RecompensaDao {
     private DataSource dataSource;
 
     public RecompensaDTO crearRecompensa(RecompensaDTO recompensaDTO){
-        recompensaDTO.setRecompensaId(sequenceDao.getPrimaryKeyForTable("recompensa"));
+        recompensaDTO.setIdRecompensa(sequenceDao.getPrimaryKeyForTable("recompensa"));
         Connection conn=null;
         try{
             conn= dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO recompensa VALUES (?,?,?,?,?)");
-            pstmt.setInt(1,recompensaDTO.getRecompensaId());
+            pstmt.setInt(1,recompensaDTO.getIdRecompensa());
             pstmt.setInt(2,recompensaDTO.getRangoInicial());
             pstmt.setInt(3,recompensaDTO.getRangoFinal());
             pstmt.setString(4,recompensaDTO.getRecompensa());
-            pstmt.setInt(5,recompensaDTO.getProyectoId());
+            pstmt.setInt(5,recompensaDTO.getIdProyecto());
             //pstmt.executeUpdate();
         }catch (Exception ex){
             ex.printStackTrace();
@@ -45,11 +45,11 @@ public class RecompensaDao {
             pstmt.setInt(1,idrecompensa);
             ResultSet rs=pstmt.executeQuery();
             if(rs.next()){
-                result.setRecompensaId(rs.getInt("id_recompensa"));
+                result.setIdRecompensa(rs.getInt("id_recompensa"));
                 result.setRangoInicial(rs.getInt("valor_min"));
                 result.setRangoFinal(rs.getInt("valor_max"));
                 result.setRecompensa(rs.getString("recompensa"));
-                result.setProyectoId(rs.getInt("id_proyecto"));
+                result.setIdProyecto(rs.getInt("id_proyecto"));
             }else {
                 result= null;
             }
@@ -66,11 +66,11 @@ public class RecompensaDao {
             ResultSet rs = stmt.executeQuery("SELECT id_recompensa, valor_min,valor_max,recompensa,id_proyecto FROM recompensa ");
             while(rs.next()){
                 RecompensaDTO recompensaDTO=new RecompensaDTO();
-                recompensaDTO.setRecompensaId(rs.getInt(1));
+                recompensaDTO.setIdRecompensa(rs.getInt(1));
                 recompensaDTO.setRangoInicial(rs.getInt(2));
                 recompensaDTO.setRangoFinal(rs.getInt(3));
                 recompensaDTO.setRecompensa(rs.getString(4));
-                recompensaDTO.setProyectoId(rs.getInt(5));
+                recompensaDTO.setIdProyecto(rs.getInt(5));
                 result.add(recompensaDTO);
             }
         }catch (Exception ex){
