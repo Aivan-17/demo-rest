@@ -67,7 +67,6 @@ public class DireccionDao {
     }
     public List<DireccionDTO> findAllDireccion() {
         List<DireccionDTO> result = new ArrayList<>();
-
         try {
             Connection conn = dataSource.getConnection();
             Statement stmt = conn.createStatement();

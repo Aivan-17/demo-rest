@@ -44,7 +44,7 @@ public class DireccionController {
         if (direccionDTO != null) {
             return new ResponseDto( true, direccionDTO,null);
         } else {
-            return new ResponseDto( true, direccionDTO,"No existe la persona con codigo:");
+            return new ResponseDto( true, null ,"No existe la persona con codigo:");
         }
     }
     @GetMapping(path = "/direccion")

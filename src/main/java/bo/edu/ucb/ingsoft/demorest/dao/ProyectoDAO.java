@@ -15,13 +15,12 @@ public class ProyectoDAO {
     private SequenceDao sequenceDao;
     @Autowired
     private DataSource dataSource;
-
+    /**Crear nuevo proyecto**/
     public ProyectoDTO crearProyecto(ProyectoDTO proyectoDTO) {
         proyectoDTO.setIdProyecto(sequenceDao.getPrimaryKeyForTable("proyecto"));
-        Connection conn = null;
-        try {
-            conn = dataSource.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO proyecto VALUES (?,?,?,?,?,?,?,?,?,?)");
+
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO proyecto VALUES (?,?,?,?,?,?,?,?,?,?)")){
             pstmt.setInt(1, proyectoDTO.getIdProyecto());
             pstmt.setString(2, proyectoDTO.getNombre());
             pstmt.setString(3, proyectoDTO.getDescripcion());
@@ -33,24 +32,16 @@ public class ProyectoDAO {
             pstmt.setString(9, proyectoDTO.getFechaInicio());
             pstmt.setString(10, proyectoDTO.getFechaFin());
             pstmt.executeUpdate();
+            pstmt.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException sqex) {
-                    return null;
-                }
-            }
         }
         return proyectoDTO;
     }
 
-
+    /**Busqueda de proyectos por id
     public ProyectoDTO findProyectoById(Integer idproyecto) {
         ProyectoDTO result = new ProyectoDTO();
-
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement("SELECT id_proyecto,nombre_proyecto, descripcion, monto_recaudar FROM proyecto where id_proyecto = ?")
         ) {
@@ -68,15 +59,14 @@ public class ProyectoDAO {
             ex.printStackTrace();
         }
         return result;
-    }
-
+    }**/
+    /**Despliegue de todos los proyectos **/
     public List<ProyectoDTO> findAllProyecto(){
         List<ProyectoDTO> result = new ArrayList<>();
 
-        try {
-            Connection conn = dataSource.getConnection();
+        try (Connection conn = dataSource.getConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("Select id_proyecto,nombre_proyecto,descripcion,monto_recaudar FROM proyecto limit 10");
+            ResultSet rs = stmt.executeQuery("Select id_proyecto,nombre_proyecto,descripcion,monto_recaudar FROM proyecto limit 10")){
             while (rs.next()){
                 ProyectoDTO proyectoDTO=new ProyectoDTO();
                 proyectoDTO.setIdProyecto(rs.getInt("id_proyecto"));
@@ -89,5 +79,26 @@ public class ProyectoDAO {
             ex.printStackTrace();
         }
         return result;
+    }
+    /** Busqueda por nombre no conseguido**/
+    public List<ProyectoDTO> findProyectoByName(String nombre) throws SQLException{
+        List<ProyectoDTO> array=new ArrayList<>();
+        try(Connection con=dataSource.getConnection();
+        PreparedStatement pre=con.prepareStatement("SELECT id_proyecto,nombre_proyecto,descripcion,monto_recaudar from proyecto where nombre_proyecto ILIKE ?")) {
+            pre.setString(1,"%"+nombre+"%");
+            ResultSet res=pre.executeQuery();
+            while (res.next()){
+                ProyectoDTO ob = new ProyectoDTO();
+                ob.setIdProyecto(res.getInt("id_proyecto"));
+                ob.setNombre(res.getString("nombre_proyecto"));
+                ob.setDescripcion(res.getString("descripcion"));
+                ob.setMontoRecaudar(res.getFloat("monto_recaudar"));
+                array.add(ob);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return array;
+
     }
 }

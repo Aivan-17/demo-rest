@@ -5,6 +5,7 @@ import bo.edu.ucb.ingsoft.demorest.dto.ProyectoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -16,11 +17,14 @@ public class GestionProyectoBl {
     public ProyectoDTO crearProyecto(ProyectoDTO proyectoDTO){
         return proyectoDAO.crearProyecto(proyectoDTO);
     }
-    public ProyectoDTO findProyectoById(Integer idProyecto){
+   /** public ProyectoDTO findProyectoById(Integer idProyecto){
         return proyectoDAO.findProyectoById(idProyecto);
-    }
+    }**/
 
     public List<ProyectoDTO> findAllProyecto(){
         return proyectoDAO.findAllProyecto();
+    }
+    public List<ProyectoDTO> findProyectoByName (String nombre) throws SQLException{
+        return proyectoDAO.findProyectoByName(nombre);
     }
 }

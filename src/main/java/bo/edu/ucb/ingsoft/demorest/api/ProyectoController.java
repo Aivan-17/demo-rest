@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
+import java.util.List;
 
 @RestController
 public class ProyectoController {
@@ -46,17 +48,22 @@ public class ProyectoController {
         }
         return new ResponseDto(true,gestionProyectoBl.crearProyecto(proyectoDTO), null);
     }
-    @GetMapping(path = "/proyecto/{idProyecto}")
+   /** @GetMapping(path = "/proyecto/{idProyecto}")
     public ResponseDto findProyectoById(@PathVariable Integer idProyecto){
         ProyectoDTO proyectoDTO = gestionProyectoBl.findProyectoById(idProyecto);
         if (proyectoDTO != null) {
             return new ResponseDto(true, proyectoDTO, null);
         }else {
-            return new ResponseDto(true, proyectoDTO,"No existe el proyecto con ese codigo");
+            return new ResponseDto(false, null,"No existe el proyecto con ese codigo");
         }
-    }
+    }**/
     @GetMapping(path = "/proyecto")
     public ResponseDto findAllProyecto(){
         return new ResponseDto(true, gestionProyectoBl.findAllProyecto(),null);
+    }
+
+    @GetMapping(path = "/proyecto/{nombre}")
+    public ResponseDto findProyectoByName(@PathVariable String nombre) throws SQLException{
+        return new ResponseDto(true,gestionProyectoBl.findProyectoByName(nombre),"Exito");
     }
 }

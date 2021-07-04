@@ -1,6 +1,6 @@
 ####
 
-GET http://localhost:8888/proyecto/132
+GET http://localhost:8888/proyecto/48
 
 ###
 
@@ -23,3 +23,8 @@ Accept: application/json
   "fechaInicio": "17/02/2020",
   "fechaFin":"17/02/2021"
 }
+
+
+###
+
+GET http://localhost:8888/proyecto/1

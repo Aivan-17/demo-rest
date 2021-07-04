@@ -1,0 +1,8 @@
+###
+
+
+GET http://localhost:8888/imagen/
+
+###
+
+GET http://localhost:8888/imagen/3

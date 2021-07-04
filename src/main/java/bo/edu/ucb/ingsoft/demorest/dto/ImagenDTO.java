@@ -3,7 +3,7 @@ package bo.edu.ucb.ingsoft.demorest.dto;
 public class ImagenDTO {
     private Integer idImagen;
     private String SrcImagen;
-    private String Imagen;
+    private String Img;
     public ImagenDTO(){
 
     }
@@ -24,11 +24,11 @@ public class ImagenDTO {
         SrcImagen = srcImagen;
     }
 
-    public String getImagen() {
-        return Imagen;
+    public String getImg() {
+        return Img;
     }
 
-    public void setImagen(String imagen) {
-        Imagen = imagen;
+    public void setImg(String img) {
+        Img = img;
     }
 }
