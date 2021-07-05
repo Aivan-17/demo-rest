@@ -1,7 +1,6 @@
 ####
 
-GET http://localhost:8888/proyecto/48
-
+GET http://localhost:8888/proyecto/1
 ###
 
 GET http://localhost:8888/proyecto
@@ -17,11 +16,9 @@ Accept: application/json
   "descripcion": "la calle el olvida la mas bonita de la ciudad",
   "montoRecaudar": "12000",
   "idEmprendedor": "3",
-  "horaInicio": "21:00",
-  "horaFin": "21:00",
-  "idEstado": 2,
   "fechaInicio": "17/02/2020",
-  "fechaFin":"17/02/2021"
+  "fechaFin":"17/02/2021",
+  "idEstado": 2
 }
 
 

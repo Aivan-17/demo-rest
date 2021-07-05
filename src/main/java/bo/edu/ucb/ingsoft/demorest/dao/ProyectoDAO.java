@@ -20,17 +20,15 @@ public class ProyectoDAO {
         proyectoDTO.setIdProyecto(sequenceDao.getPrimaryKeyForTable("proyecto"));
 
         try (Connection conn = dataSource.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO proyecto VALUES (?,?,?,?,?,?,?,?,?,?)")){
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO proyecto VALUES (?,?,?,?,?,?,?,?)");){
             pstmt.setInt(1, proyectoDTO.getIdProyecto());
             pstmt.setString(2, proyectoDTO.getNombre());
             pstmt.setString(3, proyectoDTO.getDescripcion());
             pstmt.setFloat(4, proyectoDTO.getMontoRecaudar());
             pstmt.setInt(5, proyectoDTO.getIdEmprendedor());
-            pstmt.setString(6, proyectoDTO.getHoraInicio());
-            pstmt.setString(7, proyectoDTO.getHoraFin());
+            pstmt.setString(6, proyectoDTO.getFechaInicio());
+            pstmt.setString(7, proyectoDTO.getFechaFin());
             pstmt.setInt(8, proyectoDTO.getIdEstado());
-            pstmt.setString(9, proyectoDTO.getFechaInicio());
-            pstmt.setString(10, proyectoDTO.getFechaFin());
             pstmt.executeUpdate();
             pstmt.close();
         } catch (Exception ex) {

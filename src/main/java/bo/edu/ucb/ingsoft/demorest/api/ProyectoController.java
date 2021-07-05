@@ -31,12 +31,6 @@ public class ProyectoController {
         if (proyectoDTO.getIdEmprendedor()==null||proyectoDTO.getIdEmprendedor().equals("")){
             return new ResponseDto(false,null,"El ID del emprendedor es Obligatorio");
         }
-        if (proyectoDTO.getHoraInicio()==null||proyectoDTO.getHoraInicio().trim().equals("")){
-            return new ResponseDto(false,null,"La hora de Inicio es Obligatorio");
-        }
-        if (proyectoDTO.getHoraFin()==null||proyectoDTO.getHoraFin().trim().equals("")){
-            return new ResponseDto(false,null,"El hora de Fin es Obligatorio");
-        }
         if (proyectoDTO.getIdEstado()==null||proyectoDTO.getIdEstado().equals("")){
             return new ResponseDto(false,null,"El ID de Estado es Obligatorio");
         }
