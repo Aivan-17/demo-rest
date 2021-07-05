@@ -19,10 +19,10 @@ public class ImagenController {
     @GetMapping(path = "/imagen/{idImagen}")
     public ResponseDto findImagenById(@PathVariable Integer idImagen)throws SQLException{
         ImagenDTO imagenDTO=gestionImagenBl.finfImagenById(idImagen);
-        if(imagenDTO!=null){
-            return new ResponseDto(true,imagenDTO,"Exito");
-        }else{
+        if(imagenDTO != null){
             return new ResponseDto(false,null,"No encontrado");
+        }else{
+            return new ResponseDto(true,imagenDTO,null);
         }
     }
     @PostMapping(path = "/imagen")

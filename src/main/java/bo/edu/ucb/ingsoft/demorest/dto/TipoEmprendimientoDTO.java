@@ -3,7 +3,6 @@ package bo.edu.ucb.ingsoft.demorest.dto;
 public class TipoEmprendimientoDTO {
     private Integer idTipoEmprendimiento;
     private String Tipo;
-    private String Area;
     public TipoEmprendimientoDTO(){
 
     }
@@ -24,11 +23,4 @@ public class TipoEmprendimientoDTO {
         Tipo = tipo;
     }
 
-    public String getArea() {
-        return Area;
-    }
-
-    public void setArea(String area) {
-        Area = area;
-    }
 }

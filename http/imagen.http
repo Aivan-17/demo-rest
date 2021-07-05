@@ -6,3 +6,14 @@ GET http://localhost:8888/imagen/
 ###
 
 GET http://localhost:8888/imagen/3
+
+
+###
+POST http://localhost:8888/imagen
+Content-Type: application/json
+Accept: application/json
+
+{
+  "SrcImagen": "img/img35.jpg",
+  "Img": "imagen1"
+}

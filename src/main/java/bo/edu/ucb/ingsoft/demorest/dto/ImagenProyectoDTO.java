@@ -3,7 +3,6 @@ package bo.edu.ucb.ingsoft.demorest.dto;
 public class ImagenProyectoDTO {
     private Integer idImagen;
     private Integer idProyecto;
-    private String Descripcion;
     public ImagenProyectoDTO(){
 
     }
@@ -24,11 +23,4 @@ public class ImagenProyectoDTO {
         this.idProyecto = idProyecto;
     }
 
-    public String getDescripcion() {
-        return Descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        Descripcion = descripcion;
-    }
 }

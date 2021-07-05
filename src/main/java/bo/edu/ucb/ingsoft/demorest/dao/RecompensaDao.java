@@ -27,7 +27,8 @@ public class RecompensaDao {
             pstmt.setInt(3,recompensaDTO.getRangoFinal());
             pstmt.setString(4,recompensaDTO.getRecompensa());
             pstmt.setInt(5,recompensaDTO.getIdProyecto());
-            //pstmt.executeUpdate();
+            pstmt.executeUpdate();
+            pstmt.close();
         }catch (Exception ex){
             ex.printStackTrace();
         }

@@ -6,11 +6,9 @@ public class ProyectoDTO {
     private String descripcion;
     private Float montoRecaudar;
     private Integer idEmprendedor;
-    private String horaInicio;
-    private String horaFin;
-    private Integer idEstado;
     private String fechaInicio;
     private String fechaFin;
+    private Integer idEstado;
     public ProyectoDTO(){
 
     }
@@ -55,30 +53,6 @@ public class ProyectoDTO {
         this.idEmprendedor = idEmprendedor;
     }
 
-    public String getHoraInicio() {
-        return horaInicio;
-    }
-
-    public void setHoraInicio(String horaInicio) {
-        this.horaInicio = horaInicio;
-    }
-
-    public String getHoraFin() {
-        return horaFin;
-    }
-
-    public void setHoraFin(String horaFin) {
-        this.horaFin = horaFin;
-    }
-
-    public Integer getIdEstado() {
-        return idEstado;
-    }
-
-    public void setIdEstado(Integer idEstado) {
-        this.idEstado = idEstado;
-    }
-
     public String getFechaInicio() {
         return fechaInicio;
     }
@@ -93,5 +67,13 @@ public class ProyectoDTO {
 
     public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public Integer getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(Integer idEstado) {
+        this.idEstado = idEstado;
     }
 }

@@ -17,5 +17,5 @@ Accept: application/json
   "rangoInicial": "100",
   "rangoFinal": 200,
   "recompensa": "Oruroasdasdasd",
-  "proyectoId": 3
+  "idProyecto": 3
 }

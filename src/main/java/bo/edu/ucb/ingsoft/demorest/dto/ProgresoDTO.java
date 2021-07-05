@@ -4,7 +4,6 @@ public class ProgresoDTO {
     private Integer idProgreso;
     private String Descripcion;
     private Integer idProyecto;
-    private String Fecha;
     public ProgresoDTO(){
 
     }
@@ -33,11 +32,4 @@ public class ProgresoDTO {
         this.idProyecto = idProyecto;
     }
 
-    public String getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(String fecha) {
-        Fecha = fecha;
-    }
 }

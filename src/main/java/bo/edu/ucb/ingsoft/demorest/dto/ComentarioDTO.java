@@ -6,9 +6,8 @@ public class ComentarioDTO {
     private Integer idComentario;
     private Integer idProyecto;
     private Integer idDonador;
-    private String Contenido;
+    private String Comentario;
     private String Fecha;
-    private Time Hora;
     public ComentarioDTO(){
 
     }
@@ -37,12 +36,12 @@ public class ComentarioDTO {
         this.idDonador = idDonador;
     }
 
-    public String getContenido() {
-        return Contenido;
+    public String getComentario() {
+        return Comentario;
     }
 
-    public void setContenido(String contenido) {
-        Contenido = contenido;
+    public void setComentario(String comentario) {
+        Comentario = comentario;
     }
 
     public String getFecha() {
@@ -51,13 +50,5 @@ public class ComentarioDTO {
 
     public void setFecha(String fecha) {
         Fecha = fecha;
-    }
-
-    public Time getHora() {
-        return Hora;
-    }
-
-    public void setHora(Time hora) {
-        Hora = hora;
     }
 }

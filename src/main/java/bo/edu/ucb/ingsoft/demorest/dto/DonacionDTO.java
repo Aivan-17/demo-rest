@@ -7,7 +7,6 @@ public class DonacionDTO {
     private Integer idProyecto;
     private Integer idDonador;
     private Float Monto;
-    private Time Hora;
     private String FechaDonacion;
     public DonacionDTO(){
 
@@ -43,14 +42,6 @@ public class DonacionDTO {
 
     public void setMonto(Float monto) {
         Monto = monto;
-    }
-
-    public Time getHora() {
-        return Hora;
-    }
-
-    public void setHora(Time hora) {
-        Hora = hora;
     }
 
     public String getFechaDonacion() {
