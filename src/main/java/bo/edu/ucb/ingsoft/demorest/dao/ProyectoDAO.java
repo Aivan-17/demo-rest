@@ -20,7 +20,7 @@ public class ProyectoDAO {
         proyectoDTO.setIdProyecto(sequenceDao.getPrimaryKeyForTable("proyecto"));
 
         try (Connection conn = dataSource.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO proyecto VALUES (?,?,?,?,?,?,?,?)");){
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO proyecto Values (?,?,?,?,?,?,?,?)");){
             pstmt.setInt(1, proyectoDTO.getIdProyecto());
             pstmt.setString(2, proyectoDTO.getNombre());
             pstmt.setString(3, proyectoDTO.getDescripcion());
@@ -64,7 +64,7 @@ public class ProyectoDAO {
 
         try (Connection conn = dataSource.getConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("Select id_proyecto,nombre_proyecto,descripcion,monto_recaudar FROM proyecto limit 10")){
+            ResultSet rs = stmt.executeQuery("Select id_proyecto,nombre_proyecto,descripcion,monto_recaudar FROM proyecto limit 20")){
             while (rs.next()){
                 ProyectoDTO proyectoDTO=new ProyectoDTO();
                 proyectoDTO.setIdProyecto(rs.getInt("id_proyecto"));

@@ -5,7 +5,7 @@ GET http://localhost:8888/recompensa
 
 ###
 
-GET http://localhost:8888/recompensa/57
+GET http://localhost:8888/recompensa/2
 
 ###
 
@@ -14,8 +14,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "rangoInicial": "100",
-  "rangoFinal": 200,
-  "recompensa": "Oruroasdasdasd",
-  "idProyecto": 3
+  "rangoInicial": 250,
+  "rangoFinal": 300,
+  "recompensa": "Recompensa - 3",
+  "idProyecto": 2
 }

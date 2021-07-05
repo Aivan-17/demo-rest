@@ -16,10 +16,10 @@ Content-Type: application/json
 Accept: application/json
 
 {
-     "zona": "olvidos",
-     "calle": "el olvido",
-     "ciudad": "Oruro",
-     "departamento": "Oruro"
+     "zona": "zona - 13",
+     "calle": "calle - 13",
+     "ciudad": "ciudad - 13",
+     "departamento": "departamento - 13"
 }
 
 

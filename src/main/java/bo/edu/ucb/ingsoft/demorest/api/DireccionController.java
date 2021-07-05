@@ -19,19 +19,15 @@ public class DireccionController {
     public ResponseDto createDireccion(@RequestBody DireccionDTO direccionDTO) {
         //validar que los datos enviados son correctos
         if(direccionDTO.getZona() == null || direccionDTO.getZona().trim().equals("")){
-        //    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"La zona debe ser Obligatoria");
             return new ResponseDto( false , null,"La zona debe ser Obligatoria");
         }
         if(direccionDTO.getCalle() == null || direccionDTO.getCalle().trim().equals("")) {
-        //    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La calledebe ser Obligatoria");
             return new ResponseDto( false , null,"La calle debe ser Obligatoria");
         }
         if(direccionDTO.getCiudad() == null || direccionDTO.getCiudad().trim().equals("")) {
-        //    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La ciudad debe ser Obligatoria");
             return new ResponseDto( false , null,"La ciudad debe ser Obligatoria");
         }
         if(direccionDTO.getDepartamento() == null || direccionDTO.getDepartamento().trim().equals("")) {
-          //  throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La depa debe ser Obligatoria");
             return new ResponseDto( false , null,"el departamento debe ser Obligatoria");
         }
             return new ResponseDto(true, gestionDireccionBl.crearDireccion(direccionDTO), null);
