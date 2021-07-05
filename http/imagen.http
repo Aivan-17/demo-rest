@@ -1,0 +1,39 @@
+###
+
+POST http://localhost:8888/imagen
+Content-Type: application/json
+Accept: application/json
+
+{
+  "src_Imagen": "calle - 13",
+  "nombre": "ciudad - 13"
+}
+
+###
+
+PUT http://localhost:8888/imagen
+Content-Type: application/json
+Accept: application/json
+
+{
+  "idImagen": 14,
+  "src_Imagen": "/img/imagen14.jpg",
+  "nombre": "imagen14"
+}
+
+
+###
+
+
+GET http://localhost:8888/imagen
+
+
+###
+
+
+GET http://localhost:8888/imagen/100
+
+
+###
+
+DELETE http://localhost:8888/imagen/100
