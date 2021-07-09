@@ -30,6 +30,14 @@
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-spring-boot-starter</artifactId>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-admin-client -->
+		<dependency>
+			<groupId>org.keycloak</groupId>
+			<artifactId>keycloak-admin-client</artifactId>
+			<version>14.0.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -46,6 +54,20 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>5.4.5</version>
 		</dependency>
+		<dependency>
+			<groupId>com.cloudinary</groupId>
+			<artifactId>cloudinary-http44</artifactId>
+			<version>1.26.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>

@@ -17,4 +17,5 @@ public class GestionPerDirBL {
     public PersonaDTO findPerDirById(Integer idPersona){
         return personaDireccionDAO.findPerDirById(idPersona);
     }
+    /**public PersonaDTO crearPersona**/
 }

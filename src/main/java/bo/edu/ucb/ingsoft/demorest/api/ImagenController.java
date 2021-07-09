@@ -3,11 +3,16 @@ package bo.edu.ucb.ingsoft.demorest.api;
 import bo.edu.ucb.ingsoft.demorest.bl.GestionImagenBl;
 import bo.edu.ucb.ingsoft.demorest.dto.ImagenDTO;
 import bo.edu.ucb.ingsoft.demorest.dto.ResponseDto;
+import bo.edu.ucb.ingsoft.demorest.service.CloudinaryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.*;
 
 @RestController
 public class ImagenController {
@@ -15,6 +20,21 @@ public class ImagenController {
     public DataSource dataSource;
     @Autowired
     private GestionImagenBl gestionImagenBl;
+
+    @CrossOrigin
+            (origins = "http://localhost:4200")
+    @PostMapping("/upload")
+    public ResponseEntity<Integer> uploadFiles(@RequestParam("files") MultipartFile files) {
+        System.out.println("ESTOY AQUI");
+        int x=0;
+        try {
+            Map result = CloudinaryService.upload(files);
+            ImagenDTO imagenDTO = new ImagenDTO((String) result.get("original_filename"), (String) result.get("url"));
+            gestionImagenBl.crearImagen(imagenDTO);
+            //x = gestionImagenBl.upload(files, imagen);
+        }catch(Exception ex ){
+            x=0;
+        } return new ResponseEntity(x, HttpStatus.OK); }
 
     @PostMapping(path = "/imagen")
     public ResponseDto crearImagen(@RequestBody ImagenDTO imagenDTO)throws SQLException {

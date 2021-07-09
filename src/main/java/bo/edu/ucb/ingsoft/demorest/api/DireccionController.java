@@ -43,6 +43,7 @@ public class DireccionController {
             return new ResponseDto( true, null ,"No existe la persona con codigo:");
         }
     }
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/direccion")
     public ResponseDto findAllDireccions() {
        return new ResponseDto( true, gestionDireccionBl.findAllDireccions(),null);

@@ -5,9 +5,12 @@ public class ImagenDTO {
     private String src_Imagen;
     private String nombre;
     public ImagenDTO(){
-
     }
-
+    public ImagenDTO(String nombre, String src_Imagen) {
+        this.nombre = nombre;
+        this.src_Imagen = src_Imagen;
+       // this.public_id = public_id;
+    }
     public Integer getIdImagen() {
         return idImagen;
     }

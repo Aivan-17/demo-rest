@@ -67,7 +67,7 @@ public class PersonaDireccionDAO {
         }
         return result;
     }
-    public PersonaDTO crearPersonsa(PersonaDTO personaDTO)throws SQLException{
+    public PersonaDTO crearPersona(PersonaDTO personaDTO)throws SQLException{
         personaDTO.setIdPersona(sequenceDao.getPrimaryKeyForTable("persona"));
         personaDTO.setId_Direccion(sequenceDao.getPrimaryKeyForTable("direccion"));
         Connection con=null;
